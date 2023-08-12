@@ -128,3 +128,14 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+
+artifacts
+cache
+node_modules
+
+
+
+#Others
+.env
+typechain-types
