@@ -1,10 +1,11 @@
 import '@/styles/globals.css'
-
+import '@rainbow-me/rainbowkit/styles.css'
 import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import { configureChains, createConfig, WagmiConfig } from 'wagmi'
 import { mainnet, polygon, optimism, arbitrum, zora } from 'wagmi/chains'
 import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { publicProvider } from 'wagmi/providers/public'
+import Layout from '@/components/Layout'
 
 const { chains, publicClient } = configureChains(
 	[mainnet, polygon, optimism, arbitrum, zora],
@@ -24,10 +25,12 @@ export const wagmiConfig = createConfig({
 
 export default function App({ Component, pageProps }) {
 	return (
-		<WagmiConfig config={wagmiConfig}>
-			<RainbowKitProvider chains={chains}>
-				<Component {...pageProps} />
-			</RainbowKitProvider>
-		</WagmiConfig>
+		<Layout>
+			<WagmiConfig config={wagmiConfig}>
+				<RainbowKitProvider chains={chains}>
+					<Component {...pageProps} />
+				</RainbowKitProvider>
+			</WagmiConfig>
+		</Layout>
 	)
 }
