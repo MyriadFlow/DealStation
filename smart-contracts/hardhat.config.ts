@@ -21,12 +21,17 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 });
 
 // API_KEY & PRIVATE_KEY
-const MATICMUM_RPC_URL = process.env.MATICMUM_RPC_URL || "https://polygon-mumbai.g.alchemy.com/v2/tr0pG2ASpL0-Ucmm969f_1yFgDIiAc6y"
-const SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL || "https://ETH-RPC-URL"
-const MNEMONIC = process.env.MNEMONIC || "1aadbafbfla asdfjasfkj asffkafsklsf ajfsklafskfsakl"
-const POLYGONSCAN_API_KEY = process.env.POLYGONSCAN_API_KEY || "KG1VJQJZVNR4AJU7QIWAKXGC78PCN9UGIK"
-const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || "Etherscan API key"
+const MATICMUM_RPC_URL = process.env.MATICMUM_RPC_URL 
+const SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL 
+const LINEA_GOERLI_RPC_URL = process.env.LINEA_GOERLI_RPC_URL 
+
+
+const MNEMONIC = process.env.MNEMONIC 
 const PRIVATE_KEY = process.env.PRIVATE_KEY
+
+const POLYGONSCAN_API_KEY = process.env.POLYGONSCAN_API_KEY 
+const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY 
+const LINEA_GOERLI_API_KEY = process.env.LINEA_GOERLI_API_KEY 
 
 
 module.exports = {
@@ -59,6 +64,14 @@ module.exports = {
       accounts: {
         mnemonic: MNEMONIC,
       },
+    },
+    lineaGoerli :{
+      networkId: 59140,
+      url: LINEA_GOERLI_RPC_URL,
+      // accounts : [PRIVATE_KEY],
+      accounts: {
+        mnemonic: MNEMONIC,
+      },      
     }
   },
   gasReporter: {
@@ -69,7 +82,18 @@ module.exports = {
     apiKey: {
       polygonMumbai : POLYGONSCAN_API_KEY,
       sepolia : ETHERSCAN_API_KEY,
+      lineaGoerli : LINEA_GOERLI_API_KEY
+    },
+      customChains: [
+    {
+      network: "lineaGoerli",
+      chainId: 59140,
+      urls: {
+        apiURL: "https://linea-goerli.infura.io/v3/7b22b86af01c43a88ffda434a224edc4",
+        browserURL: "https://goerli.lineascan.build/"
+      }
     }
+  ]
   },
   paths: {
     sources: "./contracts",
