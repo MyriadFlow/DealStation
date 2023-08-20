@@ -89,7 +89,7 @@ module.exports = {
       network: "lineaGoerli",
       chainId: 59140,
       urls: {
-        apiURL: "https://linea-goerli.infura.io/v3/7b22b86af01c43a88ffda434a224edc4",
+        apiURL: "https://linea-goerli.infura.io/v3/asffasfssgaddsdadgdg",
         browserURL: "https://goerli.lineascan.build/"
       }
     }
