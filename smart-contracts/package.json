@@ -14,7 +14,7 @@
   "scripts": {
     "test": "hardhat test",
     "coverage": "hardhat coverage",
-    "deploy": "hardhat run scripts/deploy.ts --network $NETWORK",
+    "deploy": "hardhat run scripts/deploy.js ",
     "compile": "hardhat compile"
   },
   "devDependencies": {

@@ -1,46 +1,43 @@
 const { ethers } = require("hardhat")
 
 async function main() {
-  let ticketAddr = "0x165C09e5ce744BEF58fA1893F8A92B488991424a"
-  let accountAddr = "0xc9213E175a9289BA04d0ff4347A04f0eF42A9E7A"
+  let uri = "www.xyz.com"
+  let saleprice = ethers.utils.parseEther("0.001")
 
-  // let uri = "www.xyz.com";
-  // let saleprice = ethers.utils.parseEther("0.001");
+  const TicketFactory = await ethers.getContractFactory("DealStationTicket")
+  console.log("Deploying contract...")
+  const ticket = await TicketFactory.deploy(uri, saleprice)
+  await ticket.deployed()
+  console.log("DealStationTicket deployed to:", ticket.address)
 
-  // const TicketFactory = await ethers.getContractFactory("DealStationTicket");
-  // console.log("Deploying contract...");
-  // const ticket = await TicketFactory.deploy(uri, saleprice);
-  // await ticket.deployed();
-  // console.log("DealStationTicket deployed to:", ticket.address);
+  if (network.name !== "hardhat") {
+    // 6 blocks is sort of a guess
+    await ticket.deployTransaction.wait(6)
+    await verify(ticket.address, [uri, saleprice])
+  }
 
-  // if (network.name !== "hardhat") {
-  //   // 6 blocks is sort of a guess
-  //   await ticket.deployTransaction.wait(6);
-  //   await verify(ticket.address, [uri, saleprice]);
-  // }
+  const AccountFactory = await ethers.getContractFactory("DealStationAccount")
+  console.log("Deploying contract...")
+  const account = await AccountFactory.deploy()
+  await account.deployed()
+  console.log("DealStationAccount deployed to:", account.address)
 
-  // const AccountFactory = await ethers.getContractFactory("DealStationAccount");
-  // console.log("Deploying contract...");
-  // const account = await AccountFactory.deploy();
-  // await account.deployed();
-  // console.log("DealStationAccount deployed to:", account.address);
-
-  // if (network.name !== "hardhat") {
-  //   // 6 blocks is sort of a guess
-  //   await ticket.deployTransaction.wait(6);
-  //   await verify(account.address, []);
-  // }
+  if (network.name !== "hardhat") {
+    // 6 blocks is sort of a guess
+    await account.deployTransaction.wait(6)
+    await verify(account.address, [])
+  }
 
   const RegistryFactory = await ethers.getContractFactory("DealStationRegistry")
   console.log("Deploying contract...")
-  const registry = await RegistryFactory.deploy(accountAddr, ticketAddr)
+  const registry = await RegistryFactory.deploy(account.address, ticket.address)
   await registry.deployed()
   console.log("DealStationRegistry deployed to:", registry.address)
 
   if (network.name !== "hardhat") {
     // 6 blocks is sort of a guess
     await registry.deployTransaction.wait(6)
-    await verify(registry.address, [accountAddr, ticketAddr])
+    await verify(registry.address, [account.address, ticket.address])
   }
 }
 
