@@ -93,6 +93,7 @@ body {
 		rgba(1, 1, 1, 0.9864320728291317) 47%,
 		rgba(20, 0, 37, 0.9668242296918768) 100%
 	);
+	background-repeat: no-repeat;
 }
 
 a {
@@ -108,6 +109,7 @@ a {
 
 section {
 	padding: 4rem;
+	color: white;
 }
 
 .hero {
@@ -132,11 +134,9 @@ section {
 	margin: 2rem;
 }
 
-.card-image {
-}
-
 .card-details {
 	background: rgba(255, 255, 255, 0.164);
+	color: white;
 	position: absolute;
 	border-radius: 0.5rem;
 	padding: 0.5rem 1rem;
@@ -162,4 +162,53 @@ section {
 	height: 2.5rem;
 	outline: none;
 	border: none;
+}
+
+.nft-card {
+	width: 18rem;
+	padding: 1rem;
+	border-radius: 1rem;
+	background: rgba(255, 255, 255, 0.11);
+}
+
+.nft-card > div {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.nft-card > div > h3,
+.nft-card > div > h4 {
+	font-size: 1rem;
+}
+
+.nft-list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding-block: 2rem;
+}
+
+.offer-list {
+	margin-top: 1rem;
+	display: flex;
+	border: 1px solid white;
+	border-radius: 1rem;
+	justify-content: space-between;
+	padding: 0.5rem;
+	background: rgba(255, 255, 255, 0.1);
+}
+
+.offer-list > div {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+}
+
+.a {
+	text-decoration: none;
+}
+
+.profile {
+	min-height: 100vh;
 }

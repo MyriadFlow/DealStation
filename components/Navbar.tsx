@@ -1,41 +1,39 @@
-import { AppstoreOutlined, MailOutlined, BugOutlined } from '@ant-design/icons'
-
-import { Menu } from 'antd'
 import React, { useState } from 'react'
-
-const items = [
-	{
-		label: 'Explore',
-		key: 'mail',
-		icon: <MailOutlined />,
-	},
-	{
-		label: 'New Listing',
-		key: 'app',
-		icon: <AppstoreOutlined />,
-	},
-	{
-		label: 'My NFTs',
-		key: 'app',
-		icon: <BugOutlined />,
-	},
-]
+import {
+	CNavbar,
+	CContainer,
+	CNavbarToggler,
+	CNavbarBrand,
+	CCollapse,
+	CNavbarNav,
+	CNavItem,
+	CNavLink,
+	CForm,
+} from '@coreui/react'
+import { ConnectButton } from '@rainbow-me/rainbowkit'
+import Link from 'next/link'
 
 const Navbar = () => {
-	const [current, setCurrent] = useState('mail')
-
-	const onClick = (e: any) => {
-		console.log('click ', e)
-		setCurrent(e.key)
-	}
+	const [visible, setVisible] = useState(false)
 	return (
-		<Menu
-			// onClick={onClick}
-			selectedKeys={[current]}
-			mode='horizontal'
-			items={items}
-			theme={'dark'}
-		/>
+		<>
+			<CNavbar expand='lg' colorScheme='dark' className='bg-dark'>
+				<CContainer fluid>
+					<CNavbarBrand href='#'>DealStation</CNavbarBrand>
+					<CNavbarToggler onClick={() => setVisible(!visible)} />
+					<CCollapse className='navbar-collapse' visible={visible}>
+						<CNavbarNav>
+							<CNavItem>
+								<Link href={'/profile'}>Profile</Link>
+							</CNavItem>
+						</CNavbarNav>
+					</CCollapse>
+					<CForm className='d-flex justify-content-end'>
+						<ConnectButton />
+					</CForm>
+				</CContainer>
+			</CNavbar>
+		</>
 	)
 }
 

@@ -1,15 +1,34 @@
 import Head from 'next/head'
-
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
-import { ConnectButton } from '@rainbow-me/rainbowkit'
 import Image from 'next/image'
 import { nfts } from '@/utils/data'
 import Card from '@/components/Card'
+import mintTicket from '../smart-contracts/contracts/DealStationTicket.sol'
 
 const inter = Inter({ subsets: ['latin'] })
 
+import { ethers } from 'ethers'
+
 export default function Home() {
+	const provider = new ethers.providers.JsonRpcProvider()
+
+	console.log(mintTicket)
+
+	// async function accessTestnetWallet() {
+	// 	if (window.ethereum) {
+	// 		const provider = new ethers.providers.Web3Provider(
+	// 			window.ethereum as ethers.providers.ExternalProvider
+	// 		)
+	// 		const signer = provider.getSigner()
+
+	// 		const address = await signer.getAddress()
+	// 		console.log('Wallet Address:', address)
+	// 	} else {
+	// 		console.error('Web3 provider (MetaMask) not found.')
+	// 	}
+	// }
+
 	return (
 		<main className={`${styles.main} ${inter.className}`}>
 			<section className='hero'>
@@ -46,7 +65,6 @@ export default function Home() {
 					))}
 				</div>
 			</section>
-			<ConnectButton />
 		</main>
 	)
 }
