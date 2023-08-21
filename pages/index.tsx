@@ -4,17 +4,13 @@ import styles from '@/styles/Home.module.css'
 import Image from 'next/image'
 import { nfts } from '@/utils/data'
 import Card from '@/components/Card'
-import mintTicket from '../smart-contracts/contracts/DealStationTicket.sol'
 
 const inter = Inter({ subsets: ['latin'] })
 
 import { ethers } from 'ethers'
 
 export default function Home() {
-	const provider = new ethers.providers.JsonRpcProvider()
-
-	console.log(mintTicket)
-
+	
 	// async function accessTestnetWallet() {
 	// 	if (window.ethereum) {
 	// 		const provider = new ethers.providers.Web3Provider(
