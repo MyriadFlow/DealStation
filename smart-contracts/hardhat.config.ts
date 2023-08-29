@@ -22,16 +22,12 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 
 // API_KEY & PRIVATE_KEY
 const MATICMUM_RPC_URL = process.env.MATICMUM_RPC_URL 
-const SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL 
-const LINEA_GOERLI_RPC_URL = process.env.LINEA_GOERLI_RPC_URL 
-
 
 const MNEMONIC = process.env.MNEMONIC 
 const PRIVATE_KEY = process.env.PRIVATE_KEY
 
 const POLYGONSCAN_API_KEY = process.env.POLYGONSCAN_API_KEY 
-const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY 
-const LINEA_GOERLI_API_KEY = process.env.LINEA_GOERLI_API_KEY 
+
 
 
 module.exports = {
@@ -56,22 +52,6 @@ module.exports = {
       accounts: {
         mnemonic: MNEMONIC,
       },
-    },
-    sepolia: {
-      networkId: 11155111,
-      url: SEPOLIA_RPC_URL,
-      // accounts : [PRIVATE_KEY],
-      accounts: {
-        mnemonic: MNEMONIC,
-      },
-    },
-    lineaGoerli :{
-      networkId: 59140,
-      url: LINEA_GOERLI_RPC_URL,
-      // accounts : [PRIVATE_KEY],
-      accounts: {
-        mnemonic: MNEMONIC,
-      },      
     }
   },
   gasReporter: {
@@ -79,21 +59,7 @@ module.exports = {
     currency: "USD",
   },
   etherscan: {
-    apiKey: {
-      polygonMumbai : POLYGONSCAN_API_KEY,
-      sepolia : ETHERSCAN_API_KEY,
-      lineaGoerli : LINEA_GOERLI_API_KEY
-    },
-      customChains: [
-    {
-      network: "lineaGoerli",
-      chainId: 59140,
-      urls: {
-        apiURL: "https://linea-goerli.infura.io/v3/asffasfssgaddsdadgdg",
-        browserURL: "https://goerli.lineascan.build/"
-      }
-    }
-  ]
+    apiKey: POLYGONSCAN_API_KEY
   },
   paths: {
     sources: "./contracts",
